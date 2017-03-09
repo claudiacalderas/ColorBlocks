@@ -18,8 +18,8 @@ function onReady(){
   $(".container").on("click", '.block', blockClickFunc);
 }
 
+// displays basic elements on the page
 function displayElements() {
-
   colorsArray = ["red","blue","green","yellow"];
 
   // counters:
@@ -29,12 +29,12 @@ function displayElements() {
   addButtons(colorsArray);
 
   // adds four initial blocks
-  addBlock("red");
-  addBlock("blue");
-  addBlock("green");
-  addBlock("yellow");
+  for (var i=0; i<colorsArray.length; i++) {
+      addBlock(colorsArray[i]);
+  }
 }
 
+// displays counters for each color
 function addCounters(arrayOfColors) {
   var htmlString = '<div>';
   for (var i=0; i<colorsArray.length; i++) {
@@ -45,8 +45,8 @@ function addCounters(arrayOfColors) {
   $('.container').append(htmlString);
 }
 
+// displays buttons for each color
 function addButtons(arrayOfColors) {
-
   var htmlString = "<div></div>";
   $('.container').append(htmlString);
   for (i=0; i<colorsArray.length; i++) {
