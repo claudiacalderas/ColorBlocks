@@ -40,7 +40,6 @@ function displayElements() {
   for (var i=0; i<colorsArray.length; i++) {
     htmlString += '<h2><span class="' + colorsArray[i] +
                   'Counter">'+colorsArray[i]+' count:</span></h2>';
-    console.log(htmlString);
   }
   htmlString += '</div>';
   $('.container').append(htmlString);
@@ -51,7 +50,6 @@ function displayElements() {
   for (i=0; i<colorsArray.length; i++) {
     htmlString += '<button id="' + colorsArray[i] + 'Button">'+
                   colorsArray[i]+'</button>';
-    console.log(htmlString);
   }
   htmlString += '</div>';
   $('.container').append(htmlString);
@@ -68,8 +66,14 @@ function addBlock(color) {
   var divString = "";
 
   // builds HTML <div> element and appends it to the <div class='container'>
-  divString = '<div class ="block ' + color +' id="></div>';
+  divString = '<div class ="block ' + color +'"></div>';
   $('.container').append(divString);
+
+  // adds data to block
+  var $element = $(".container").children().last();
+  $element.data("color", color);
+
+  console.log($element.data('color'));
 
   // increases counter
   updateCounter(color,1);
@@ -121,17 +125,18 @@ function buttonClickFunc(color) {
 
 // deletes block and decreases counter
 function blockClickFunc() {
-
   // gets the color of the block that has been clicked
-  var color = $(this).attr('class').split(' ')[1];
-  console.log(color);
+  var blockData = $(this).data();
+  var currentColor = blockData.color;
 
-  // hides block
+  console.log('current color ' + currentColor);
+
+  // removes block
   $(this).remove();
 
   // updates and displays counters
-  updateCounter(color,-1);
-  displayCounter(color);
+  updateCounter(currentColor,-1);
+  displayCounter(currentColor);
 }
 
 $(document).ready(onReady);
