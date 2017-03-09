@@ -37,34 +37,35 @@ function addBlock(color) {
   var divString = "";
 
   // builds HTML <div> element and appends it to the <body>
-  //divString = '<div class ="block ' + color +' id="></div>';
-  //$('body').append(divString);
+  divString = '<div class ="block ' + color +' id="></div>';
+  $('body').append(divString);
 
   // increases counter
+  updateCounter(color,1);
+
+  // changes counter on the page
+  displayCounter(color);
+}
+
+function updateCounter(color,value) {
   switch (color) {
     case "red":
-      redCounterVar+=1;
-      divString = '<div class ="block ' + color +'" id="'+redCounterVar+'"></div>';
+      redCounterVar+=value;
       break;
     case "blue":
-      blueCounterVar+=1;
-      divString = '<div class ="block ' + color +'" id="'+blueCounterVar+'"></div>';
+      blueCounterVar+=value;
       break;
     case "green":
-      greenCounterVar+=1;
-      divString = '<div class ="block ' + color +'" id="'+greenCounterVar+'"></div>';
+      greenCounterVar+=value;
       break;
     case "yellow":
-      yellowCounterVar+=1;
-      divString = '<div class ="block ' + color +'" id="'+yellowCounterVar+'"></div>';
+      yellowCounterVar+=value;
       break;
   }
-  $('body').append(divString);
-  updateCounter(color);
 }
 
 // Updates the counters on the page
-function updateCounter(color){
+function displayCounter(color){
     switch (color) {
     case "red":
       $(".redCounter").text("Red count: " + redCounterVar);
