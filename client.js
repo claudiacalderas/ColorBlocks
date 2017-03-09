@@ -8,6 +8,7 @@ var yellowCounterVar=0;
 function onReady(){
   console.log("Document ready");
 
+  // adds four initial blocks
   addBlock("red");
   addBlock("blue");
   addBlock("green");
@@ -47,6 +48,7 @@ function addBlock(color) {
   displayCounter(color);
 }
 
+// increases or decreases color counters
 function updateCounter(color,value) {
   switch (color) {
     case "red":
@@ -90,13 +92,16 @@ function buttonClickFunc(color) {
 // deletes block and decreases counter
 function blockClickFunc() {
 
-  console.log("in function");
-
+  // gets the color of the block that has been clicked
   var color = $(this).attr('class').split(' ')[1];
   console.log(color);
 
+  // hides block
   $(this).hide();
 
+  // updates and displays counters
+  updateCounter(color,-1);
+  displayCounter(color);
 }
 
 $(document).ready(onReady);
