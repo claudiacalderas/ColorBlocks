@@ -8,11 +8,8 @@ var yellowCounterVar=0;
 function onReady(){
   console.log("Document ready");
 
-  // adds four initial blocks
-  addBlock("red");
-  addBlock("blue");
-  addBlock("green");
-  addBlock("yellow");
+  // display the basic elements on the page
+  displayElements();
 
   // event listeners
   $('#redButton').click(function() {
@@ -29,17 +26,50 @@ function onReady(){
   });
 
   // event listener for click on block
-  $(document).on("click", '.block', blockClickFunc);
+  $(".container").on("click", '.block', blockClickFunc);
+}
 
+function displayElements() {
+
+  colorsArray = ["red","blue","green","yellow"];
+  htmlString = '';
+
+  // counters:
+  //<h2><span class="redCounter">Red count:</span></h2>
+  htmlString = '<div>';
+  for (var i=0; i<colorsArray.length; i++) {
+    htmlString += '<h2><span class="' + colorsArray[i] +
+                  'Counter">'+colorsArray[i]+' count:</span></h2>';
+    console.log(htmlString);
+  }
+  htmlString += '</div>';
+  $('.container').append(htmlString);
+
+  // buttons:
+  // <button id="redButton">Red</button>
+  htmlString = '<div>';
+  for (i=0; i<colorsArray.length; i++) {
+    htmlString += '<button id="' + colorsArray[i] + 'Button">'+
+                  colorsArray[i]+'</button>';
+    console.log(htmlString);
+  }
+  htmlString += '</div>';
+  $('.container').append(htmlString);
+
+  // adds four initial blocks
+  addBlock("red");
+  addBlock("blue");
+  addBlock("green");
+  addBlock("yellow");
 }
 
 // adds blocks to the DOM
 function addBlock(color) {
   var divString = "";
 
-  // builds HTML <div> element and appends it to the <body>
+  // builds HTML <div> element and appends it to the <div class='container'>
   divString = '<div class ="block ' + color +' id="></div>';
-  $('body').append(divString);
+  $('.container').append(divString);
 
   // increases counter
   updateCounter(color,1);
