@@ -127,7 +127,7 @@ function blockClickFunc() {
   console.log(color);
 
   // hides block
-  $(this).hide();
+  $(this).remove();
 
   // updates and displays counters
   updateCounter(color,-1);
