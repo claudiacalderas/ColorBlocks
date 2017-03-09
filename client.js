@@ -26,6 +26,10 @@ function onReady(){
   $('#yellowButton').click(function() {
     buttonClickFunc("yellow");
   });
+
+  // event listener for click on block
+  $(document).on("click", '.block', blockClickFunc);
+
 }
 
 // adds blocks to the DOM
@@ -33,24 +37,29 @@ function addBlock(color) {
   var divString = "";
 
   // builds HTML <div> element and appends it to the <body>
-  divString = '<div class ="block ' + color +'"></div>';
-  $('body').append(divString);
+  //divString = '<div class ="block ' + color +' id="></div>';
+  //$('body').append(divString);
 
   // increases counter
   switch (color) {
     case "red":
       redCounterVar+=1;
+      divString = '<div class ="block ' + color +'" id="'+redCounterVar+'"></div>';
       break;
     case "blue":
       blueCounterVar+=1;
+      divString = '<div class ="block ' + color +'" id="'+blueCounterVar+'"></div>';
       break;
     case "green":
       greenCounterVar+=1;
+      divString = '<div class ="block ' + color +'" id="'+greenCounterVar+'"></div>';
       break;
     case "yellow":
       yellowCounterVar+=1;
+      divString = '<div class ="block ' + color +'" id="'+yellowCounterVar+'"></div>';
       break;
   }
+  $('body').append(divString);
   updateCounter(color);
 }
 
@@ -75,6 +84,18 @@ function updateCounter(color){
 // calls function to add block and increase counter depending on color
 function buttonClickFunc(color) {
   addBlock(color);
+}
+
+// deletes block and decreases counter
+function blockClickFunc() {
+
+  console.log("in function");
+
+  var color = $(this).attr('class').split(' ')[1];
+  console.log(color);
+
+  $(this).hide();
+
 }
 
 $(document).ready(onReady);
